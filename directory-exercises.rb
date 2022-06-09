@@ -17,17 +17,15 @@ def input_students
   students
 end
 
-# created a list of students whose starts with a specific letter
-def students_letter(students)
-  puts "Print the students whose name begins with a letter:"
-  letter = gets.chomp.downcase
-  students_letter = []
-  students.each_with_index do |student, index|
-    if student[:name].chr.downcase == letter
-      students_letter << student
+# created a list of students whose names are shorter than 12 characters
+def students_selected(students)
+  students_l2_char = []
+  students.each do |student|
+    if student[:name].length < 12
+      students_l2_char << student
     end
   end
-  students_letter
+  students_l2_char
 end 
 
 def print_header
@@ -42,13 +40,13 @@ def print_list(students)
 end
 
 def print_footer(names)
-  puts "Overall, we have #{names.count} great students"
+  puts "Overall, we have #{names.count} great students whose names are shorter than 12 characters"
 end
 # =end
 
-students = input_students
-#shortened the array to those students whose names begin with a specific letter
-students_l = students_letter(students)
+students_all = input_students
+#shortened the array to those students whose names are shorter than 12 characters
+students = students_selected(students_all)
 print_header
-print_list(students_l)
-print_footer(students_l)
+print_list(students)
+print_footer(students)
