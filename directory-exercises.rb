@@ -17,12 +17,25 @@ def input_students
   students
 end
 
+# created a list of students whose starts with a specific letter
+def students_letter(students)
+  puts "Print the students whose name begins with a letter:"
+  letter = gets.chomp.downcase
+  students_letter = []
+  students.each_with_index do |student, index|
+    if student[:name].chr.downcase == letter
+      students_letter << student
+    end
+  end
+  students_letter
+end 
+
 def print_header
     puts "The students of Villains Academy"
     puts "--------------"
 end
 
-def print(students)
+def print_list(students)
   students.each_with_index do |student, index|
     puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
   end
@@ -31,9 +44,11 @@ end
 def print_footer(names)
   puts "Overall, we have #{names.count} great students"
 end
-
+# =end
 
 students = input_students
+#shortened the array to those students whose names begin with a specific letter
+students_l = students_letter(students)
 print_header
-print(students)
-print_footer(students)
+print_list(students_l)
+print_footer(students_l)
