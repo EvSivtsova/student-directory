@@ -18,7 +18,11 @@ def input_students
         break
       end
     end
-    puts "Now we have #{students.count} students"
+    if students.count == 1
+      puts "Now we have #{students.count} student"
+    else 
+      puts "Now we have #{students.count} students"
+    end
     #get another name from the user
     name = gets.chomp
   end
@@ -52,7 +56,13 @@ def print(students)
 end
 
 def print_footer(names)
-  puts "Overall, we have #{names.count} great students"
+  if names.count == 1
+    puts "Overall, we have #{names.count} great student"
+  elsif names.count == 0
+    puts "We have no students in this cohort"
+  else
+    puts "Overall, we have #{names.count} great students"
+  end
 end
 
 students = input_students
