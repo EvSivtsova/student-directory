@@ -26,19 +26,28 @@ def input_students
   students
 end
 
+def cohort(students)
+  # ask for input on which cohort to print
+   puts "Which cohort would you like to print?"
+   cohort_to_print = gets.chomp.capitalize
+   # create and array with the students from that cohort
+   cohort_students = []
+   students.map do |student|
+     if student[:cohort].to_s.include?(cohort_to_print)
+      cohort_students << student
+     end
+   end
+   cohort_students
+end
+
 def print_header
     puts "The students of Villains Academy"
     puts "--------------"
 end
 
 def print(students)
-  # ask for input on which cohort to print
-   puts "Which cohort would you like to print?"
-   cohort_to_print = gets.chomp.capitalize
    students.map do |student|
-     if student[:cohort].to_s.include?(cohort_to_print)
       puts "#{student[:name]} (#{student[:cohort]} cohort)"
-     end
    end
 end
 
@@ -46,8 +55,8 @@ def print_footer(names)
   puts "Overall, we have #{names.count} great students"
 end
 
-
 students = input_students
+students_to_print = cohort(students)
 print_header
-print(students)
-print_footer(students)
+print(students_to_print)
+print_footer(students_to_print)
