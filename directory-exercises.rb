@@ -4,14 +4,14 @@ def input_students
   # create an empty array
   students = []
   # get the first name
-  name = gets.chomp
+  name = gets.strip
   # while the name is not empty, repeat this code
   while !name.empty? do
     #ask for the cohort
     month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     while true
       puts "What's your cohort? Select month"
-      cohort = gets.chomp.capitalize
+      cohort = gets.chop.capitalize
       if month.include?(cohort)
         # add the student hash to the array. Converts the cohort value to a symbol
         students << {name: name, cohort: cohort.to_sym}
@@ -24,7 +24,7 @@ def input_students
       puts "Now we have #{students.count} students"
     end
     #get another name from the user
-    name = gets.chomp
+    name = gets.gsub(/\n/, "")
   end
   # return the array pf students
   students
@@ -33,7 +33,7 @@ end
 def cohort(students)
   # ask for input on which cohort to print
    puts "Which cohort would you like to print?"
-   cohort_to_print = gets.chomp.capitalize
+   cohort_to_print = gets.strip.capitalize
    # create and array with the students from that cohort
    cohort_students = []
    students.map do |student|
