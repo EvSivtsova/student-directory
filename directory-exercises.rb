@@ -32,9 +32,14 @@ def print_header
 end
 
 def print(students)
-  students.each do |student|
-    puts "#{student[:name]} (#{student[:cohort]} cohort)"
-  end
+  # ask for input on which cohort to print
+   puts "Which cohort would you like to print?"
+   cohort_to_print = gets.chomp.capitalize
+   students.map do |student|
+     if student[:cohort].to_s.include?(cohort_to_print)
+      puts "#{student[:name]} (#{student[:cohort]} cohort)"
+     end
+   end
 end
 
 def print_footer(names)
