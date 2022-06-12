@@ -24,11 +24,11 @@ def process(selection)
     puts "You've selected option 2"
     show_students
   when "3"
-    puts "You've selected option 3"
+    puts "You've selected option 3: saving data"
     filename
     save_students
   when "4"
-    puts "You've selected option 4"
+    puts "You've selected option 4: loading data"
     filename
     load_students(@filename)
   when "9"
@@ -88,7 +88,7 @@ def save_students
       file.puts csv_line
     end
   end
-  #file.close
+  puts "The data has been saved under #{@filename}"
 end
 
 def load_students(filename)
