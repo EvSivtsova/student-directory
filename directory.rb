@@ -18,15 +18,20 @@ end
 def process(selection)
   case selection
   when "1"
+    puts "You've selected option 1"
     input_students
   when "2"
+    puts "You've selected option 2"
     show_students
-  when "9"
-    exit # this will cause the program to terminate
   when "3"
+    puts "You've selected option 3"
     save_students
   when "4"
+    puts "You've selected option 4"
     load_students
+  when "9"
+    puts "You've selected option 9"
+    exit # this will cause the program to terminateelse
   else
     puts "I don't know what you meant, try again"
   end
@@ -94,7 +99,8 @@ def load_students(filename = "students.csv")
 end
 
 def try_load_students
-  filename = ARGV.first# first argument from the command line
+  # first argument from the command line
+  filename = ARGV.first
   if filename.nil? || ! File.exists?(filename) # load students.csv if no file is given on startup
     load_students("students.csv")
     puts "Loaded #{@students.count} from students.csv"
