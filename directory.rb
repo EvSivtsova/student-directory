@@ -25,13 +25,17 @@ def process(selection)
     show_students
   when "3"
     puts "You've selected option 3"
+    filename
     save_students
   when "4"
     puts "You've selected option 4"
-    load_students
+    filename
+    load_students(@filename)
   when "9"
     puts "You've selected option 9"
+    puts @students
     exit # this will cause the program to terminateelse
+    puts @students
   else
     puts "I don't know what you meant, try again"
   end
@@ -78,8 +82,7 @@ def print_footer
 end
 
 def save_students
-  # open the file for writing
-  file = File.open("students.csv", "w")
+  file = File.open(@filename, "w")
   # iterate over the array of students
   @students.each do |student|
     student_data = [student[:name], student[:cohort]]
@@ -89,7 +92,7 @@ def save_students
   file.close
 end
 
-def load_students(filename = "students.csv")
+def load_students(filename)
   file = File.open(filename, "r")
   file.readlines.each do |line|
   @name, cohort = line.chomp.split(',')
@@ -110,5 +113,11 @@ def try_load_students
   end
 end
 
+def filename
+    puts "Which file you would like to open:"
+    @filename = STDIN.gets.chomp
+end
+
 try_load_students
 interactive_menu
+
