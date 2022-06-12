@@ -3,8 +3,8 @@
 def print_menu
   puts "1. Input the students"
   puts "2. Show the students"
-  puts "3. Save the list to students.csv"
-  puts "4. Load the list from students.csv"
+  puts "3. Save the list"
+  puts "4. Load the list"
   puts "9. Exit" # 9 because we'll be adding more items
 end
 
@@ -33,9 +33,7 @@ def process(selection)
     load_students(@filename)
   when "9"
     puts "You've selected option 9"
-    puts @students
     exit # this will cause the program to terminateelse
-    puts @students
   else
     puts "I don't know what you meant, try again"
   end
@@ -82,23 +80,24 @@ def print_footer
 end
 
 def save_students
-  file = File.open(@filename, "w")
+  file = File.open(@filename, "w") do |file|
   # iterate over the array of students
-  @students.each do |student|
-    student_data = [student[:name], student[:cohort]]
-    csv_line = student_data.join(",")
-    file.puts csv_line
+    @students.each do |student|
+      student_data = [student[:name], student[:cohort]]
+      csv_line = student_data.join(",")
+      file.puts csv_line
+    end
   end
-  file.close
+  #file.close
 end
 
 def load_students(filename)
-  file = File.open(filename, "r")
-  file.readlines.each do |line|
-  @name, cohort = line.chomp.split(',')
-    student_data
+  file = File.open(filename, "r") do |file|
+    file.readlines.each do |line|
+    @name, cohort = line.chomp.split(',')
+      student_data
+    end
   end
-  file.close
 end
 
 def try_load_students
